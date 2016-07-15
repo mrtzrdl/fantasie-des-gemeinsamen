@@ -9,7 +9,7 @@ var routes = require('./routes/index');
 
 var app = express();
 
-  mongoose.connect('localhost:27017/mo');
+mongoose.connect('mongodb://mrtzrdl_mongoadmin:Naalahzei2@localhost:21203/admin');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -32,7 +32,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.set('port', process.env.PORT || 8080);
+app.set('port', process.env.PORT || 61000);
 var server = app.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + server.address().port);
 });
