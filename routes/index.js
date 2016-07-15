@@ -19,7 +19,17 @@ router.get('/api/snippets', function(req, res, next) {
 
 //snippet hinzufügen
 router.post('/api/snippets', function(req, res, next) {
-  Snippet.create(req.body, function (err, data) {
+//Snippet.create(req.body, function (err, data) {
+  var ip = '';
+  try {
+      ip = req.headers['x-forwarded-for'] ||
+          req.connection.remoteAddress ||
+          req.socket.remoteAddress ||
+          req.connection.socket.remoteAddress;
+  }
+  catch (e) {}
+
+  Snippet.create({text: req.body.text, ip: ip}, function (err, data) {
     if (err) return next(err);
     res.json(data);
   });

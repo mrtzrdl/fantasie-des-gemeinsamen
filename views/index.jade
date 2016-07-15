@@ -8,20 +8,22 @@ html
   body(ng-app="FantasieApp" ng-controller="MainCtrl")
     .container
       .row.wrapper
-        .col-md-8
+        img.logo(src='images/logo.png')
+        .col-md-9
           .story(ng-repeat="snippet in snippets | limitTo: limit")
             .row
               .col-md-4
                 span.pull-right {{ snippet.date | date : 'dd.MM.yyyy HH:mm' }} <br /> {{ snippet.ip }}
                 a.pull-right(type='submit' ng-click="removeSnippet(snippet)" ng-if="admin") entfernen
-              .col-md-8
+              .col-md-8.last-snippet
                 p {{ snippet.text }}
+                .fader(ng-if="{{limit == 1}}")
           .row
-            .col-md-push-4.col-md-8    
+            .col-md-push-4.col-md-9
               from(ng-show="!resolved")
-                textarea.form-control.fdm-textarea(ng-model='snippet.text' placeholder='und dann?' rows='10' maxlength='400')
+                textarea.form-control.fdm-textarea(ng-model='snippet.text' placeholder='und dann?' rows='10' maxlength='600')
                 .col-md-2
-                  p.counter{{ 400 - snippet.text.length }}
+                  p.counter {{ 600 - snippet.text.length }}
                 .col-md-10
                   a(type='submit' ng-if="snippet.text.length > 1" ng-click="addSnippet()") anfügen
       .row

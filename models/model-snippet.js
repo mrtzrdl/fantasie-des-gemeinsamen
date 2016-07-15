@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var SnippetSchema = new mongoose.Schema({
   text: String,
+  ip: String,
   date: { type : Date, default: Date.now }
 });
 
